@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Feb 24 23:03:44 2019
-
-@author: Jie
-"""
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -15,21 +8,21 @@ pd.set_option('display.width', None)
 
 ###############################################################################
 # Read 'Bronze.csv' into a DataFrame: bronze
-bronze = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Bronze.csv')
+bronze = pd.read_csv('Bronze.csv')
 
 # Read 'Silver.csv' into a DataFrame: silver
-silver = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Silver.csv')
+silver = pd.read_csv('Silver.csv')
 
 # Read 'Gold.csv' into a DataFrame: gold
-gold = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Gold.csv')
+gold = pd.read_csv('Gold.csv')
 
 # Print the first five rows of gold
 print(gold.head())
 ###############################################################################
 # Create the list of file names: filenames
-filenames = ['F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Gold.csv', 
-             'F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Silver.csv', 
-             'F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Bronze.csv']
+filenames = ['Gold.csv', 
+             'Silver.csv', 
+             'Bronze.csv']
 
 # Create the list of three DataFrames: dataframes
 dataframes = []
@@ -91,10 +84,10 @@ weather3 = weather1.reindex(year).ffill()
 # Print weather3
 print(weather3)
 ###############################################################################
-names_1881 = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/names1881.csv', header=None)
+names_1881 = pd.read_csv('names1881.csv', header=None)
 names_1881.columns=['name', 'gender', 'count']
 names_1881 = names_1881.set_index(['name', 'gender'])
-names_1981 = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/names1981.csv', header=None)
+names_1981 = pd.read_csv('names1981.csv', header=None)
 names_1981.columns=['name', 'gender', 'count']
 names_1981 = names_1981.set_index(['name', 'gender'])
 # Reindex names_1981 with index of names_1881: common_names
@@ -109,7 +102,7 @@ common_names = common_names.dropna()
 # Print shape of new common_names
 print(common_names.shape)
 ###############################################################################
-weather = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/pittsburgh2013.csv', index_col='Date')
+weather = pd.read_csv('pittsburgh2013.csv', index_col='Date')
 
 # Extract selected columns from weather as new DataFrame: temps_f
 temps_f = weather[['Min TemperatureF', 'Mean TemperatureF', 'Max TemperatureF']]
@@ -123,7 +116,7 @@ temps_c.columns = temps_c.columns.str.replace('F', 'C')
 # Print first 5 rows of temps_c
 print(temps_c.head())
 ###############################################################################
-gdp = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/gdp_usa.csv', parse_dates=True, index_col='DATE')
+gdp = pd.read_csv('gdp_usa.csv', parse_dates=True, index_col='DATE')
 
 # Slice all the gdp data from 2008 onward: post2008
 post2008 = gdp.loc['2008-01-01':,:]
@@ -144,8 +137,8 @@ yearly['growth'] = yearly.pct_change()*100
 print(yearly)
 
 ###############################################################################
-sp500 = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/sp500.csv', parse_dates=True, index_col='Date')
-exchange = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/exchange.csv', parse_dates=True, index_col='Date')
+sp500 = pd.read_csv('sp500.csv', parse_dates=True, index_col='Date')
+exchange = pd.read_csv('exchange.csv', parse_dates=True, index_col='Date')
 
 # Subset 'Open' & 'Close' columns from sp500: dollars
 dollars = sp500[['Open', 'Close']]
@@ -159,9 +152,8 @@ pounds = dollars.multiply(exchange['GBP/USD'], axis=0)
 # Print the head of pounds
 print(pounds.head())
 ###############################################################################
-jan = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/sales-jan-2015.csv', parse_dates=True, index_col='Date')
-feb = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/sales-feb-2015.csv', parse_dates=True, index_col='Date')
-mar = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/sales-mar-2015.csv', parse_dates=True, index_col='Date')
+jan = pd.read_csv('sales-feb-2015.csv', parse_dates=True, index_col='Date')
+mar = pd.read_csv('sales-mar-2015.csv', parse_dates=True, index_col='Date')
 # Extract the 'Units' column from jan: jan_units
 jan_units = jan['Units']
 
@@ -197,8 +189,8 @@ quarter1 = pd.concat(units, axis=0)
 print(quarter1.loc['jan 27, 2015':'feb 2, 2015'])
 print(quarter1.loc['feb 26, 2015':'mar 7, 2015'])
 ###############################################################################
-names_1881 = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/names1881.csv', header=None, names=['name', 'gender', 'count'])
-names_1981 = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/names1981.csv', header=None, names=['name', 'gender', 'count'])
+names_1881 = pd.read_csv('names1881.csv', header=None, names=['name', 'gender', 'count'])
+names_1981 = pd.read_csv('names1981.csv', header=None, names=['name', 'gender', 'count'])
 
 # Add 'year' column to names_1881 and names_1981
 names_1881['year'] = 1881
@@ -220,7 +212,7 @@ medal_types=['gold', 'silver', 'bronze']
 for medal in medal_types:
 
     # Create the file name: file_name
-    file_name = 'F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/%s_top5.csv' % medal
+    file_name = '%s_top5.csv' % medal
     
     # Create list of column names: columns
     columns = ['Country', medal]
@@ -241,7 +233,7 @@ medals=[]
 medal_types=['gold', 'silver', 'bronze']
 for medal in medal_types:
 
-    file_name = 'F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/%s_top5.csv' % medal
+    file_name = '%s_top5.csv' % medal
     
     # Read file_name into a DataFrame: medal_df
     medal_df = pd.read_csv(file_name, index_col='Country')
@@ -270,9 +262,9 @@ idx = pd.IndexSlice
 # Print all the data on medals won by the United Kingdom
 print(medals_sorted.loc[idx[:, 'United Kingdom'],:])
 ###############################################################################
-df1 = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/feb-sales-Hardware.csv', parse_dates=True, index_col='Date')
-df2 = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/feb-sales-Software.csv', parse_dates=True, index_col='Date')
-df3 = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/feb-sales-Service.csv', parse_dates=True, index_col='Date')
+df1 = pd.read_csv('feb-sales-Hardware.csv', parse_dates=True, index_col='Date')
+df2 = pd.read_csv('feb-sales-Software.csv', parse_dates=True, index_col='Date')
+df3 = pd.read_csv('feb-sales-Service.csv', parse_dates=True, index_col='Date')
 february = pd.concat((df1,df2,df3), axis=1, keys=['Hardware', 'Software', 'Service'])
 
 # Print february.info()
@@ -287,9 +279,9 @@ slice_2_8 = february.loc['2015-02-02':'2015-02-08', idx[:, 'Company']]
 # Print slice_2_8
 print(slice_2_8)
 ###############################################################################
-jan = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/sales-jan-2015.csv', parse_dates=True)
-feb = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/sales-feb-2015.csv', parse_dates=True)
-mar = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/sales-mar-2015.csv', parse_dates=True)
+jan = pd.read_csv('sales-jan-2015.csv', parse_dates=True)
+feb = pd.read_csv('sales-feb-2015.csv', parse_dates=True)
+mar = pd.read_csv('sales-mar-2015.csv', parse_dates=True)
 
 # Make the list of tuples: month_list
 month_list = [('january', jan), ('february', feb), ('march', mar)]
@@ -313,13 +305,13 @@ idx = pd.IndexSlice
 print(sales.loc[idx[:, 'Mediacore'], :])
 ###############################################################################
 # Read 'Bronze.csv' into a DataFrame: bronze
-bronze = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Bronze.csv', nrows=5)
+bronze = pd.read_csv('Bronze.csv', nrows=5)
 
 # Read 'Silver.csv' into a DataFrame: silver
-silver = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Silver.csv', nrows=5)
+silver = pd.read_csv('Silver.csv', nrows=5)
 
 # Read 'Gold.csv' into a DataFrame: gold
-gold = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Gold.csv', nrows=5)
+gold = pd.read_csv('Gold.csv', nrows=5)
 
 # Create the list of DataFrames: medal_list
 medal_list = ['bronze', 'silver', 'gold']
@@ -331,9 +323,9 @@ medals = pd.concat((bronze, silver, gold), keys=medal_list, axis=1, join='inner'
 print(medals)
 
 ###############################################################################
-china = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/gdp_china.csv', parse_dates=True, index_col='Year')
+china = pd.read_csv('gdp_china.csv', parse_dates=True, index_col='Year')
 china = china.rename(columns={'GDP':'China'})
-usa = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/gdp_usa.csv', parse_dates=True, index_col='DATE')
+usa = pd.read_csv('gdp_usa.csv', parse_dates=True, index_col='DATE')
 us = usa.rename(columns={'VALUE':'USA'})
 us.index.name = 'Year'
 
@@ -353,8 +345,8 @@ gdp = pd.concat((china_annual, us_annual), axis=1, join='inner')
 print(gdp.resample('10A').last())
 
 ###############################################################################
-oil = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/oil_price.csv', parse_dates=True)
-auto = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/automobiles.csv')
+oil = pd.read_csv('oil_price.csv', parse_dates=True)
+auto = pd.read_csv('automobiles.csv')
 oil.Date = pd.to_datetime(oil.Date)
 auto.yr = pd.to_datetime(auto.yr)
 # Merge auto and oil: merged
@@ -373,7 +365,7 @@ print(yearly)
 print(yearly.corr())
 ###############################################################################
 # Create file path: file_path
-file_path = 'F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Summer Olympic medalists 1896 to 2008 - EDITIONS.tsv'
+file_path = 'Summer Olympic medalists 1896 to 2008 - EDITIONS.tsv'
 
 # Load DataFrame from file_path: editions
 editions = pd.read_csv(file_path, sep='\t')
@@ -385,7 +377,7 @@ editions = editions[['Edition', 'Grand Total', 'City', 'Country']]
 print(editions)
 ###############################################################################
 # Create the file path: file_path
-file_path = 'F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Summer Olympic medalists 1896 to 2008 - IOC COUNTRY CODES.csv'
+file_path = 'Summer Olympic medalists 1896 to 2008 - IOC COUNTRY CODES.csv'
 
 # Load DataFrame from file_path: ioc_codes
 ioc_codes = pd.read_csv(file_path)
@@ -397,7 +389,7 @@ ioc_codes = ioc_codes[['Country', 'NOC']]
 print(ioc_codes.head())
 print(ioc_codes.tail())
 ###############################################################################
-df = pd.read_csv('F:/0 - PhD at UTD/2019 Spring/DataCamp/Merging DataFrames with pandas/Summer Olympic medalists 1896 to 2008 - ALL MEDALISTS.tsv', 
+df = pd.read_csv('Summer Olympic medalists 1896 to 2008 - ALL MEDALISTS.tsv', 
                  sep='\t', skiprows=range(4))
 
 medals = df[['Athlete', 'NOC', 'Medal', 'Edition']]
@@ -494,46 +486,3 @@ ax.set_xticklabels(editions['City'])
 # Display the plot
 plt.show()
 ###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
-###############################################################################
-
